@@ -1,2 +1,3 @@
 # AlgorithmLearnJS
 使用javascript进行简单算法结构学习
+新增数组结构的基本操作以及用法
