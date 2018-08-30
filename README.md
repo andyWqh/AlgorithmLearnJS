@@ -1,0 +1,2 @@
+# AlgorithmLearnJS
+使用javascript进行简单算法结构学习
