@@ -17,6 +17,20 @@ $(function () {
     queue.dequeue();
     console.log(queue.size());
     queue.print();
+
+    //实际应用案例 优先队列实现
+    let priorityQueue = new PriorityQueue();
+    //添加优先级元素
+    priorityQueue.enqueue("andyWqh", 1);
+    priorityQueue.enqueue("Lily", 2);
+    priorityQueue.enqueue("stone", 3);
+    priorityQueue.enqueue("Jhon", 1);
+    console.log(priorityQueue.count);
+    console.log(priorityQueue.tmep);
+    //打印元素
+    priorityQueue.print();
+     
+
 });
 //#endregion
 
@@ -48,6 +62,55 @@ function Queue() {
     //打印队列元素
     this.print = function () {
         console.log(data.join(","));
+    };
+};
+//#endregion
+
+//#region 优先队列实现类
+function PriorityQueue() {
+    let items = [];
+    //定义一个设置优先级类
+    function QueueElement(element, priority) {
+        this.element = element;
+        this.priority = priority;
+    }
+    let count = 0, tmep=0;
+    this.enqueue = function (element, priority) {
+        let queueElement = new QueueElement(element, priority);
+        let added = false;
+        for (let i = 0; i < items.length; i++) {
+            if (queueElement.priority < items[i].priority) {
+                items.slice(i, 0, queueElement);
+                added = true;
+                count++;
+                break;
+            }
+        }
+        if (!added) {
+            items.push(queueElement);
+            tmep++;
+        }
+    };
+
+    this.front = function () {
+        return items[0];
+    };
+
+    this.dequeue = function () {
+        return items.shift();
+    };
+    this.isEmpty = function () {
+        return items.length == 0;
+    };
+    this.size = function () {
+        return items.length;
+    };
+
+    this.print = function () {
+        for (let index = 0; index < items.length; index++) {
+            const obj = items[index];
+            console.log('{0}-{1}'.format(obj.element, obj.priority));
+        }
     };
 };
 //#endregion
