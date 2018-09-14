@@ -35,6 +35,7 @@
              let current = head;
              let index = 0;
              let previous;
+             //插入头部
              if (position === 0) {
                  if (!head) {
                      head = node;
@@ -44,12 +45,13 @@
                      current.prev = node;
                      head = node;
                  }
-             } else if (position === length) {
+             } else if (position === length) { //最后一项插入
                  current = tail;
                  current.next = node;
                  node.prev = current;
                  tail = node;
              } else {
+                 //中间插入
                  while (index++ < position) {
                      previous = current;
                      current = current.next;
