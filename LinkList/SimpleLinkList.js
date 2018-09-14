@@ -35,8 +35,8 @@ function LinkedList () {
   let length = 0;
   //链表头部节点
   let head = null;
+  
   //#region 链表基本方法
-
   //链表尾部添加元素
   this.append = function (element) {
     //设置待添加节点属性
