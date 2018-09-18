@@ -1,4 +1,5 @@
  //#region 双向链表
+ 
  function DoubleLinkList() {
      let Node = function (element) {
          this.element = element;
