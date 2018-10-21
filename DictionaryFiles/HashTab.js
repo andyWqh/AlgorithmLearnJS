@@ -1,5 +1,20 @@
 $(function () {
+    //测试HashTable
+    let hashTab = new HashTable();
+    //添加元素
+    hashTab.put("andyWqh", "andyWqh@163.com");
+    hashTab.put("andyWzc", "andyWzc@163.com");
+    hashTab.put("john", "andyJohn@163.com");
+    hashTab.put("tyrion", "tyrion@163.com");
 
+    //获取元素
+    console.log(hashTab.get("andyWqh"));
+    console.log(hashTab.get("andyWzc"));
+    console.log(hashTab.get("andy"));
+
+    //移除指定键
+    hashTab.remove("john");
+    console.log(hashTab.get("john"));
 });
 
 //创建散列表数据结构
@@ -9,8 +24,8 @@ function HashTable() {
     //定义散列表私有方法
     let loseloseHashCode = function (key) {
         let hash = 0;
-        for (let i = 0; i < key.lenth; i++) {
-            hash = hash + key.chatCodeAt(i);
+        for (let i = 0; i < key.length; i++) {
+            hash = hash + key.charCodeAt(i);
         }
         return hash % 37;
     };
