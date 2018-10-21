@@ -1,6 +1,23 @@
  //#region 字典基本操作
  $(function () {
+     let dict = new Dictionary();
+     dict.set("andyWqh", "andyWqh@163.com");
+     dict.set("John", "john@gmail.com");
+     dict.set("tom", 'tomJosns@qq.com');
 
+     //输出指定键值
+     console.log(dict.has("andyWqh"));
+     //字典的长度
+     console.log("字典长度:{0}".format(dict.size()));
+     console.log("字典所有键:"+dict.keys());
+     console.log("字典键值:" + dict.values());
+
+    //删除指定键
+    dict.delete('andyWqh');
+    console.log(dict.size());
+    console.log(dict.keys());
+    console.log(dict.getItems());
+    
  });
  //#endregion
 
@@ -9,7 +26,7 @@
      //申明一个Object对象存储数据
      var items = {};
 
-     //#region 具体实现方法
+
      //校验指定的key值是否存在字段中，存在则返回true,不存就返回false
      this.has = function (key) {
          return items.hasOwnProperty(key);
@@ -17,8 +34,7 @@
 
      //字典添加或者更新键值对值
      this.set = function (key, value) {
-         //
-         items[key] = value;
+         return items[key] = value;
      }
 
      //根据key删除字典键值对
@@ -52,10 +68,15 @@
 
      //清空字典数据进行初始化
      this.clear = function () {
-         items= {};
-       }
-
-     //#endregion
+         items = {};
+     }
+     //字典的长度
+     this.size = function () {
+         return Object.keys(items).length;
+     }
+     //获取字典内部Items
+     this.getItems = function () {
+         return items;
+     }
  }
-
  //#endregion

@@ -1,0 +1,9 @@
+{
+    "editor.fontFamily": "\"Inziu Iosevka SC,'Fira Code', Consolas, 'Courier New', monospace\"",
+    "editor.fontLigatures": true,
+    "files.autoSave":"afterDelay",
+    "editor.fontSize": 16,
+    "files.autoSaveDelay": 1000,
+    "editor.foldingStrategy": "indentation"
+
+}
