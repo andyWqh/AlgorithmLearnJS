@@ -40,9 +40,7 @@ function BinarySearchTree() {
     }
 
     //在树中查找指定键的节点,如果存在则返回True,如果不存在,则返回false
-    this.search
-
-    function (key) {
+    this.search = function (key) {
 
     };
 
