@@ -48,6 +48,7 @@ function BinarySearchTree() {
     this.inOrderTraverse = function (callBackFunc) {
         inOrderTraverseNode(callBackFunc);
     };
+
     //实现中序遍历私有辅助函数
     var inOrderTraverseNode = function (node, callBackFunc) {
         //判断当前节点是否为空,作为递归函数的终止条件
@@ -59,6 +60,7 @@ function BinarySearchTree() {
             inOrderTraverseNode(node.right, callBackFunc);
         }
     };
+
     //通过先序遍历方式遍历所有节点
     this.preOrderTraverse = function (callBackFunc) {
         preOrderTraverseNode(callBackFunc);
@@ -73,6 +75,7 @@ function BinarySearchTree() {
             preOrderTraverseNode(node, right, callBackFunc);
         }
     };
+
     //通过后序遍历方式遍历所有节点
     this.postOrderTraverse = function () {
         postOrderTraverseNode(callBackFunc);
@@ -90,12 +93,44 @@ function BinarySearchTree() {
 
     //返回树中最小键值的节点
     this.min = function () {
+        return minNode(root);
+    };
 
+    //实现BST（二叉搜索树）最小值算法私有辅助函数
+    //BST最小值处在最左的叶子节点，故找到最左边的叶子节点即可
+    var minNode = function (node) {
+        if (node) {
+            //循环遍历左子树节点，直到左子树是叶子节点为止
+            while (node && node.left != null) {
+                node = node.left;
+            }
+            //找到左子树叶子节点
+            return node.key;
+        } else {
+            //如果当前节点不存在
+            return null;
+        }
     };
 
     //返回树中最大键值的节点
     this.max = function () {
+        return maxNode(root);
+    };
 
+    //实现BST(二叉搜索树)最大值算法的私有辅助函数
+    //BST最大值处在右子树的叶子节点，故找到最右端的叶子节点即可
+    var maxNode = function (node) {
+        //判断当前节点是否存在
+        if (node) {
+            while (node && node.right != null) {
+                node = node.right;
+            }
+            //找到最右端的叶子节点
+            return node.key;
+        } else {
+            //当前节点不存在 直接返回null
+            return null;
+        }
     };
 
     //从树中移除某个键值的节点
