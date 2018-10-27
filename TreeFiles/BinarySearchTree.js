@@ -44,20 +44,49 @@ function BinarySearchTree() {
 
     };
 
-    //通过中序遍历方式遍历所有节点
-    this.inOrderTraverse = function () {
-
+    //通过中序遍历方式遍历所有节点, 调用回调函数输出当前节点键值
+    this.inOrderTraverse = function (callBackFunc) {
+        inOrderTraverseNode(callBackFunc);
     };
-
+    //实现中序遍历私有辅助函数
+    var inOrderTraverseNode = function (node, callBackFunc) {
+        //判断当前节点是否为空,作为递归函数的终止条件
+        if (node != null) {
+            //遍历左子树
+            inOrderTraverseNode(node.left, callBackFunc);
+            callBackFunc(node.key);
+            //遍历右子树
+            inOrderTraverseNode(node.right, callBackFunc);
+        }
+    };
     //通过先序遍历方式遍历所有节点
-    this.preOrderTraverse = function () {
-
+    this.preOrderTraverse = function (callBackFunc) {
+        preOrderTraverseNode(callBackFunc);
     };
 
+    //先序遍历私有辅助函数,递归实现
+    var preOrderTraverseNode = function (node, callBackFunc) {
+        //判断当前节点是否为null
+        if (node != null) {
+            callBackFunc(node.key);
+            preOrderTraverseNode(node.left, callBackFunc);
+            preOrderTraverseNode(node, right, callBackFunc);
+        }
+    };
     //通过后序遍历方式遍历所有节点
     this.postOrderTraverse = function () {
-
+        postOrderTraverseNode(callBackFunc);
     };
+
+    //实现后续遍历私有辅助函数，采用递归实现
+    var postOrderTraverseNode = function (node, callBackFunc) {
+        if (node != null) {
+            postOrderTraverseNode(node.left, callBackFunc);
+            postOrderTraverseNode(node.right, callBackFunc);
+            callBackFunc(node.key);
+        }
+    };
+
 
     //返回树中最小键值的节点
     this.min = function () {
@@ -74,3 +103,29 @@ function BinarySearchTree() {
 
     };
 }
+
+//回调函数
+function printNodeValue(value) {
+    //控制台输出各节点键值
+    console.log(value);
+}
+
+//测试二叉树基本操作
+var binaryTree = new BinarySearchTree();
+//测试添加节点元素
+binaryTree.insert(11);
+binaryTree.insert(5);
+binaryTree.insert(12);
+binaryTree.insert(4);
+binaryTree.insert(21);
+binaryTree.insert(10);
+binaryTree.insert(23);
+binaryTree.insert(9);
+binaryTree.insert(13);
+binaryTree.insert(15);
+binaryTree.insert(6);
+binaryTree.insert(18);
+binaryTree.insert(2);
+
+//测试中序遍历
+binaryTree.inOrderTraverse(printNodeValue);
