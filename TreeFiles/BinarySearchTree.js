@@ -41,7 +41,24 @@ function BinarySearchTree() {
 
     //在树中查找指定键的节点,如果存在则返回True,如果不存在,则返回false
     this.search = function (key) {
+        return searchNode(root, key);
+    };
 
+    //检索一个特定值私有辅助函数
+    var searchNode = function (node, key) {
+        //判断当前节点是否为null
+        if (node != null) {
+            if (key < node.key) {
+                searchNode(node.left, key);
+            } else if (key > node.key) {
+                searchNode(node.right, key)
+            } else {
+                //找到指定节点
+                return true;
+            }
+        } else {
+            return false;
+        }
     };
 
     //通过中序遍历方式遍历所有节点, 调用回调函数输出当前节点键值
@@ -137,6 +154,50 @@ function BinarySearchTree() {
     this.remove = function (key) {
 
     };
+
+    //移除指定key的节点 私有辅助函数
+    var removeNode = function (node, key) {
+        if (node === null) {
+            return null;
+        }
+        if (key < node.key) {
+            node.left = removeNode(node.left, key);
+            return node;
+        } else if (key > node.key) {
+            node.right = removeNode(node.right, key);
+            return node;
+        } else {
+            //key  === node.key情况
+            //第一种情况: 移除一个叶子节点
+            if (node.left === null && node.right === null) {
+                node = null;
+                return node;
+            }
+            //第二种情况:移除一个只有一个子节点的节点
+            if (node.left === null) {
+                node = node.right;
+                return node;
+            } else if (node.right === null) {
+                node = node.left;
+                return node;
+            }
+            //第三种情况：移除一个有两个子节点的节点
+            var aux = findMinNode(node.right);
+            node.key = aux.key;
+            node.right = removeNode(node.right, aux.key);
+            return node;
+        }
+    };
+
+    //私有辅助函数：检索指定节点的最小值
+    var findMinNode = function (node) {
+        if (node != null) {
+            while (node && node.left != null) {
+                node = node.left;
+            }
+            return node;
+        }
+    }
 }
 
 //回调函数
