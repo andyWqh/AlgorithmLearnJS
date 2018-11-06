@@ -57,12 +57,14 @@ function createNodeSort(size) {
     }
     return array;
 }
+
 //测试冒泡排序
 $(function () {
     var array = createNodeSort();
     console.log(array.print());
     //排序
-    //array.bubleSort();
+    array.bubleSort();
+    //改进冒泡排序
     array.modifyBubleSort();
     //排序后的值
     console.log(array.print());
